@@ -1,12 +1,21 @@
 import React from 'react'
-import logo from "../assets/background"
+import back from '../assets/back.webp'
 const Hero = () => {
   return (
     <>
-    <div>
-      <img src="background" alt="" className='absolute  ' />
+    <div className=" mt-[-10%]  relative h-188 bg-center w-full flex  ">
+      <img src={back} alt="" width={1521} className=''/>
+
+      <div className="absolute z-10 pl-100">
+          <h1 className=" mt-45 text-5xl text-[#ed306f] font-serif  font-normal text-center">
+             Turn Your Dream's Into Reality 
+          </h1>
+          <div className="flex gap-5 mt-2 ">
+            <button className="bg-[#E75480] hover:bg-[#FF8C00] text-white font-semibold px-6 rounded-2xl shadow-md hover:shadow-lg transition duration-300 ease-in-out">Book Now</button>
+            <button className="bg-[#E75480] hover:bg-[#FF8C00] text-white font-medium px-5 py-2.5 rounded-2xl  shadow-inner hover:shadow-md backdrop-blur-sm transition-all duration-300">Read More</button>
+          </div>
+      </div>
     </div>
-    
     </>
   )
 }

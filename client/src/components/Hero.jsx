@@ -11,7 +11,6 @@ const Hero = () => {
              Turn Your Dream's Into Reality 
           </h1>
           <div className="flex gap-5 mt-2 ">
-            <button className="bg-[#E75480] hover:bg-[#FF8C00] text-white font-semibold px-6 rounded-2xl shadow-md hover:shadow-lg transition duration-300 ease-in-out">Book Now</button>
             <button className="bg-[#E75480] hover:bg-[#FF8C00] text-white font-medium px-5 py-2.5 rounded-2xl  shadow-inner hover:shadow-md backdrop-blur-sm transition-all duration-300">Read More</button>
           </div>
       </div>

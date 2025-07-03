@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link, useNavigate } from "react-router-dom";
-import contact from "../assets/contact.jpeg";
+import contact from "../assets/contact.webp";
 
 const Contact = () => {
   return (

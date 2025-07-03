@@ -7,7 +7,7 @@ const Hero = () => {
       <img src={back} alt="" width={1521} className=''/>
 
       <div className="absolute z-10 pl-100">
-          <h1 className=" mt-45 text-5xl text-[#ed306f] font-serif  font-normal text-center">
+          <h1 className=" mt-45 text-5xl bg-gradient-to-r from-[#f97e04] to-[#5e0d6ed4] bg-clip-text text-transparent font-serif  font-normal text-center">
              Turn Your Dream's Into Reality 
           </h1>
           <div className="flex gap-5 mt-2 ">

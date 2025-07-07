@@ -1,22 +1,56 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link, useNavigate } from "react-router-dom";
 import loginbg_2 from "../assets/loginbg_2.jpg"
-const Login = () => {
+import api from "../config/api";
+import {toast} from "react-hot-toast"
+
+
+  const Login = () => {
+  const navigate = useNavigate();
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const formSubmitKro = async (e) => {
+    e.preventDefault();
+    const logindata = {
+      email: email,
+      password: password,
+    }
+    console.log(logindata);
+    try{
+      const res = await api.post("/auth/login",logindata);
+      toast.success(res.data.message);
+      setEmail("")
+      setPassword("")
+      navigate('/userDashboard')
+    }catch(error){
+      toast.error(
+        `Error : ${error.response?.status || error.message} | ${error.response?.data.message || ""}`
+      );
+      console.log(error);
+    }
+
+  }
   return (
+    <>
     <div className="fixed inset-0 w-full h-full flex items-center justify-center overflow-hidden">
       <img src={loginbg_2} alt="" className="absolute inset-0 w-full h-full object-cover z-0" />
       <div className="backdrop-blur-lg bg-white/30 border border-white/30 shadow-xl rounded-2xl p-8 w-full max-w-md text-white relative z-10 max-h-screen overflow-y-auto">
         <h2 className="text-3xl font-semibold text-center mb-6">Login</h2>
-        <form className="space-y-5">
+        <form className="space-y-5" onSubmit={formSubmitKro}>
           <div>
             <label className="block mb-1 text-sm font-medium text-white/90" htmlFor="email">
               Email
             </label>
             <input
-              id="email"
+              name='email'
               type="email"
-              className="w-full px-4 py-2 rounded-lg bg-white/20 border border-white/30 placeholder-white/70 text-white focus:outline-none focus:ring-2 focus:ring-white/50"
+              className="w-full px-4 py-2 rounded-lg bg-white/20 border border-white/30 placeholder-white/70 text-violet-600 font font-medium focus:outline-none focus:ring-2 focus:ring-white/50"
               placeholder="you@example.com"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
             />
           </div>
           <div>
@@ -24,10 +58,13 @@ const Login = () => {
               Password
             </label>
             <input
-              id="password"
+              name='password'
               type="password"
-              className="w-full px-4 py-2 rounded-lg bg-white/20 border border-white/30 placeholder-white/70 text-white focus:outline-none focus:ring-2 focus:ring-white/50"
+              className="w-full px-4 py-2 rounded-lg bg-white/20 border border-white/30 placeholder-white/70 text-violet-600 font-medium focus:outline-none focus:ring-2 focus:ring-white/50"
               placeholder="••••••••"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
             />
           </div>
           <button
@@ -36,13 +73,20 @@ const Login = () => {
           >
             Sign In
           </button>
-          <div>
-            Don't have an account ? 
-            <Link to={"/register"} className='text-yellow-500 pl-20 font-bold'>Register</Link>
-          </div>
         </form>
+        <p className="text-center text-sm font-medium text-white mt-6">
+              Don’t have an account?{" "}
+              <span
+                className="text-yellow-400 pl-4 cursor-pointer"
+                onClick={() => navigate("/register")}
+              >
+                Register
+              </span>
+            </p>
       </div>
     </div>
+  
+    </>
   )
 }
 

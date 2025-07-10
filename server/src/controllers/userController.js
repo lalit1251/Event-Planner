@@ -10,7 +10,7 @@ export const GetProfile = async (req, res, next) => {
     res
       .status(200)
       .json({
-        message: `Welcome back ${currentUser.fullName}`,
+        message: `Welcome back ${currentUser.name}`,
         data: currentUser,
       });
   } catch (error) {

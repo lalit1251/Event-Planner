@@ -36,6 +36,8 @@ import {toast} from "react-hot-toast"
     <>
     <div className="fixed inset-0 w-full h-full flex items-center justify-center overflow-hidden">
       <img src={loginbg_2} alt="" className="absolute inset-0 w-full h-full object-cover z-0" />
+
+      
       <div className="backdrop-blur-lg bg-white/30 border border-white/30 shadow-xl rounded-2xl p-8 w-full max-w-md text-white relative z-10 max-h-screen overflow-y-auto">
         <h2 className="text-3xl font-semibold text-center mb-6">Login</h2>
         <form className="space-y-5" onSubmit={formSubmitKro}>

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { toast } from "react-hot-toast";
 import api from "../config/api";
+import dash_bg from "../assets/dash_bg.png"
 
 const UserDashboard = () => {
   const [userdata, setUserData] = useState({
@@ -127,10 +128,10 @@ const SidebarItem = ({ label }) => (
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#fff1f5] via-[#fff5f8] to-[#fffafc] flex flex-col md:flex-row font-serif">
       {/* Sidebar */}
-      <aside className="w-full md:w-1/4 bg-white border-r border-[#fbd3dd] p-6 shadow-sm">
+      <aside className=" md:w-1/5 bg-white border-r border-[#fbd3dd] p-6 shadow-sm">
         <div className="text-center mb-8">
           <div >
-            <img src={userdata.photo} alt="" className="w-24  h-24 rounded-full mx-auto bg-[#ffe6eb] text-[#e56c84] flex items-center justify-center text-3xl font-bold shadow-inner" />
+            <img src={userdata.photo} alt="" className="w-24  h-24 rounded-full mx-auto  flex items-center justify-center text-3xl font-bold shadow-inner" />
           </div>
           <h2 className="mt-4 text-xl font-semibold text-[#c94a6a]">{userdata.name}</h2>
           <p className="text-sm text-[#7d5a5a]">{userdata.email}</p>
@@ -144,12 +145,52 @@ const SidebarItem = ({ label }) => (
       </aside>
 
       {/* Main Content */}
-      <main className="flex-1 p-6 space-y-6">
+      <main className="flex-1 space-y-6">
         {activeSection === "Dashboard" && (
           <>
-           <div className="">
+           <div className="relative  justify-center items-center w-full flex">
+            <img src={dash_bg} width={1521} alt="" />
 
-           </div>
+
+            <div className="absolute">
+              <div className=" flex flex-col mb-30 pr-10 items-center font- justify-center text-white">
+        <h1 className="text-5xl font-semibold">Your Profile</h1>
+        <br />
+        <h3 className="text-2xl font-semibold">Welcome {userdata.name}</h3>
+      </div>
+
+      <div className="mx-auto  p-6 w-150 m-20 rounded-lg shadow-md text-[#d60621] backdrop-blur-lg bg-white/30 border border-white/30 flex justify-center gap-15 items-center">
+        <div className="">
+          <div className="w-50 h-50 rounded-full">
+            <img
+              src={userdata.photo}
+              alt=""
+              className="w-50 h-50 rounded-full object-cover"
+            />
+          </div>
+          
+        </div>
+        <div className="grid justify-around gap-5">
+          <h3>
+            <b>Name :</b> {userdata.name}
+          </h3>
+          <h3>
+            <b>Email :</b> {userdata.email}
+          </h3>
+          <h3>
+            <b>Phone :</b> {userdata.number}
+          </h3>
+        </div>
+       
+
+            </div>
+
+
+           
+      </div>
+            </div>
+
+          
           </>
         )}
 

@@ -34,7 +34,16 @@ app.use((err,req,res,next)=>{
 const port = process.env.PORT  || 5000;
 
 
-app.listen(port,()=>{
+app.listen(port, async()=>{
     console.log("server started at", port);
     connectDB();
+
+    try {
+    await connectDB();
+    await cloudinary.api.resources({ max_results: 1 });
+    console.log("Cloudinary Connected");
+  } catch (error) {
+    console.log(error);
+    process.exit(1);
+  }
 });

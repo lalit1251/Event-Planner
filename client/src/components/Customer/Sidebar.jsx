@@ -20,8 +20,8 @@ const Sidebar = ({active , setActive}) => {
             <div className='py-8 px-5'>
               <ul className='grid gap-2'>
                <li
-                className={`flex items-center gap-2 border p-3 rounded-lg text-lg hover:bg-amber-600 hover:text-white ${
-                  active === "overview" && "bg-amber-600 text-white"
+                className={`flex items-center gap-3 border border-gray-200 p-4 rounded-xl text-lg font-medium cursor-pointer transition-all duration-300 hover:bg-gradient-to-r hover:from-indigo-500 hover:to-purple-500 hover:text-white hover:shadow-md hover:scale-105 ${
+                  active === "overview" && "bg-gradient-to-r from-indigo-500 to-purple-500 text-white shadow-md scale-105"
                 }`}
                 onClick={()=>setActive("overview")}
               >
@@ -29,8 +29,8 @@ const Sidebar = ({active , setActive}) => {
               </li>
 
               <li
-              className={`flex items-center gap-2 border p-3 rounded-lg text-lg hover:bg-amber-600 hover:text-white ${
-                  active === "overview" && "bg-amber-600 text-white"
+             className={`flex items-center gap-3 border border-gray-200 p-4 rounded-xl text-lg font-medium cursor-pointer transition-all duration-300 hover:bg-gradient-to-r hover:from-indigo-500 hover:to-purple-500 hover:text-white hover:shadow-md hover:scale-105 ${
+                  active === "profile" && "bg-gradient-to-r from-indigo-500 to-purple-500 text-white shadow-md scale-105"
                 }`}
                 onClick={()=>setActive("profile")}
               >
@@ -38,29 +38,29 @@ const Sidebar = ({active , setActive}) => {
                 </li>
 
                 <li
-                className={`flex items-center gap-2 border p-3 rounded-lg text-lg hover:bg-amber-600 hover:text-white ${
-                  active === "overview" && "bg-amber-600 text-white"
+                className={`flex items-center gap-3 border border-gray-200 p-4 rounded-xl text-lg font-medium cursor-pointer transition-all duration-300 hover:bg-gradient-to-r hover:from-indigo-500 hover:to-purple-500 hover:text-white hover:shadow-md hover:scale-105 ${
+                  active === "bookings" && "bg-gradient-to-r from-indigo-500 to-purple-500 text-white shadow-md scale-105"
                 }`}
                 onClick={()=>setActive("bookings")}
               >
-                <FaTachometerAlt /> Bookings
+                <FaCalendarCheck /> Bookings
                 </li>
 
                 <li
-                className={`flex items-center gap-2 border p-3 rounded-lg text-lg hover:bg-amber-600 hover:text-white ${
-                  active === "overview" && "bg-amber-600 text-white"
+                className={`flex items-center gap-3 border border-gray-200 p-4 rounded-xl text-lg font-medium cursor-pointer transition-all duration-300 hover:bg-gradient-to-r hover:from-indigo-500 hover:to-purple-500 hover:text-white hover:shadow-md hover:scale-105 ${
+                  active === "support" && "bg-gradient-to-r from-indigo-500 to-purple-500 text-white shadow-md scale-105"
                 }`}
                 onClick={()=>setActive("support")}
               >
-                <FaTachometerAlt /> Support</li>
+                <FaLifeRing /> Support</li>
 
                 <li
-                className={`flex items-center gap-2 border p-3 rounded-lg text-lg hover:bg-amber-600 hover:text-white ${
-                  active === "overview" && "bg-amber-600 text-white"
+                className={`flex items-center gap-3 border border-gray-200 p-4 rounded-xl text-lg font-medium cursor-pointer transition-all duration-300 hover:bg-gradient-to-r hover:from-indigo-500 hover:to-purple-500 hover:text-white hover:shadow-md hover:scale-105 ${
+                  active === "feedback" && "bg-gradient-to-r from-indigo-500 to-purple-500 text-white shadow-md scale-105"
                 }`}
                 onClick={()=>setActive("feedback")}
               >
-                <FaTachometerAlt /> Feedback
+                <FaCommentDots /> Feedback
                 </li>
 
               </ul>

@@ -1,4 +1,3 @@
-import cloudinary from "../config/cloudinary.js";
 import User from "../models/userModel.js";
 
 

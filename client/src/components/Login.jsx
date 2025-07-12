@@ -19,7 +19,7 @@ import {toast} from "react-hot-toast"
     }
     console.log(logindata);
     try{
-      const res = await api.post("/auth/login",logindata);
+      const res = await api.post("/auth/login",{email , password});
       toast.success(res.data.message);
       setEmail("")
       setPassword("")

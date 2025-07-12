@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 
 const Profile = () => {
   const navigate = useNavigate();
-  const [usedata , setUserData] = useState("");
+  const [userdata , setUserData] = useState("");
 
   const fetchUserData = async()=>{
     try{
@@ -47,13 +47,13 @@ const Profile = () => {
         </div>
         <div className="grid justify-around gap-5">
           <h3>
-            <b>Name :</b> {userdata.fullName}
+            <b>Name :</b> {userdata.name}
           </h3>
           <h3>
             <b>Email :</b> {userdata.email}
           </h3>
           <h3>
-            <b>Phone :</b> {userdata.phone}
+            <b>Phone :</b> {userdata.number}
           </h3>
         </div>
         <button

@@ -42,7 +42,7 @@ const UserDashboardEdit = () => {
 
     const formData = new FormData();
 
-    formData.append("fullName", userdata.fullName);
+    formData.append("name", userdata.name);
     formData.append("email", userdata.email);
     formData.append("picture", picture);
 
@@ -104,7 +104,7 @@ const UserDashboardEdit = () => {
             <input
               type="text"
               name="fullName"
-              value={userdata.fullName}
+              value={userdata.name}
               onChange={handelChange}
               className="p-2 border rounded-lg border-rose-300"
             />
@@ -117,7 +117,7 @@ const UserDashboardEdit = () => {
             <input
               type="text"
               name="fullName"
-              value={userdata.phone}
+              value={userdata.number}
               onChange={handelChange}
               className="p-2 border rounded-lg border-rose-300"
             />

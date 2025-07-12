@@ -9,7 +9,7 @@ const genToken = (userID, res) => {
     maxAge: 1000 * 60 * 60 * 24,
     httpOnly: true,
     secure: false,
-    sameSide: "None",
+    sameSite: "lax",
   });
 };
 

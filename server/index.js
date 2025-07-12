@@ -8,7 +8,7 @@ import cors from "cors";
 import connectDB from "./src/config/db.js";
 import UserRouter from "./src/routes/userRoutes.js"
 import cookieParser from "cookie-parser";
-
+import cloudinary from "./src/config/cloudinary.js";
 
 const app = express();
 
@@ -46,4 +46,6 @@ app.listen(port, async()=>{
     console.log(error);
     process.exit(1);
   }
+
+    
 });

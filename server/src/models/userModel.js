@@ -23,7 +23,46 @@ const userSchema = mongoose.Schema({
         type: String,
         required: true,
         default:""
-    }
+    },
+    gender:{
+
+        type:String,
+        enum:["male","female","other","N/A"],
+        required:true,
+        default:"N/A"
+    },
+    representing:{
+        type: String,
+        required:true,
+        default:"N/A",
+        enum:["Bride","Groom","both","N/A"],
+
+    },
+    occupation: {
+      type: String,
+      default: " N/A",
+      required: true,
+    },
+    address: {
+      type: String,
+      default: "N/A",
+      required: true,
+    },
+    city: {
+      type: String,
+      default: "N/A",
+      required: true,
+    },
+    district: {
+      type: String,
+      default: "N/A",
+      required: true,
+    },
+    state: {
+      type: String,
+      default: "N/A",
+      required: true,
+    },
 
 },
 {timestamps: true}

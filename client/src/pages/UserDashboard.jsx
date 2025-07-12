@@ -1,22 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { toast } from "react-hot-toast";
 import api from "../config/api";
+import { CiEdit } from "react-icons/ci";
 import dash_bg from "../assets/dash_bg.png"
+import { useNavigate } from "react-router-dom";
 
 const UserDashboard = () => {
-  const [userdata, setUserData] = useState({
-    name: "John Doe",
-    email: "john.doe@example.com",
-    number: "123-456-7890",
-    wallet: 5000,
-    lastLogin: "6 July, 2025",
-    ip: "192.168.1.23",
-    device: "Chrome on Windows",
-    notifications: [],
-    events: []
-  });
+  const navigate = useNavigate();
+  const [userdata, setUserData] = useState("");
 
   const [activeSection, setActiveSection] = useState("Dashboard");
+
 
   const fetchUserData = async () => {
     try {
@@ -152,14 +146,14 @@ const SidebarItem = ({ label }) => (
             <img src={dash_bg} width={1521} alt="" />
 
 
-            <div className="absolute">
-              <div className=" flex flex-col mb-30 pr-10 items-center font- justify-center text-white">
-        <h1 className="text-5xl font-semibold">Your Profile</h1>
+            <div className="absolute pr-100">
+              <div className=" flex flex-col mb-30 pr-10 items-center  font- justify-center text-transparent">
+        <h1 className="text-5xl font-semibold bg-gradient-to-r from-[#c00202] to-[#8807a2d4] bg-clip-text ">Your Profile</h1>
         <br />
-        <h3 className="text-2xl font-semibold">Welcome {userdata.name}</h3>
+        <h3 className="text-2xl font-semibold bg-gradient-to-r from-[#017371] to-[#a20714d4] bg-clip-text">Welcome {userdata.name}</h3>
       </div>
 
-      <div className="mx-auto  p-6 w-150 m-20 rounded-lg shadow-md text-[#d60621] backdrop-blur-lg bg-white/30 border border-white/30 flex justify-center gap-15 items-center">
+      <div className="mx-auto  p-6 w-150 m-20 rounded-lg shadow-md text-amber-950 backdrop-blur-lg bg-white/30 border border-white/30 flex justify-center gap-15 items-center">
         <div className="">
           <div className="w-50 h-50 rounded-full">
             <img
@@ -181,7 +175,14 @@ const SidebarItem = ({ label }) => (
             <b>Phone :</b> {userdata.number}
           </h3>
         </div>
-       
+        <button
+          className="absolute top-1 right-1 text-white border p-2 rounded-lg flex gap-2 justify-center items-center hover:bg-rose-300 bg-rose-400 text-lg"
+          onClick={() => navigate("/userDashboardEdit")}
+        >
+          {" "}
+          <CiEdit />
+          Edit
+        </button>
 
             </div>
 

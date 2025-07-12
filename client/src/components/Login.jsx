@@ -23,7 +23,7 @@ import {toast} from "react-hot-toast"
       toast.success(res.data.message);
       setEmail("")
       setPassword("")
-      navigate('/userDashboard')
+      navigate('/dashboard')
     }catch(error){
       toast.error(
         `Error : ${error.response?.status || error.message} | ${error.response?.data.message || ""}`

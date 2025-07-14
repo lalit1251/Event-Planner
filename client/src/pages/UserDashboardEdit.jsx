@@ -103,7 +103,7 @@ const UserDashboardEdit = () => {
             <b>Name :</b>{" "}
             <input
               type="text"
-              name="fullName"
+              name="name"
               value={userdata.name}
               onChange={handelChange}
               className="p-2 border rounded-lg border-rose-300"
@@ -116,7 +116,7 @@ const UserDashboardEdit = () => {
             <b>Phone :</b>{" "}
             <input
               type="text"
-              name="fullName"
+              name="number"
               value={userdata.number}
               onChange={handelChange}
               className="p-2 border rounded-lg border-rose-300"

@@ -1,13 +1,10 @@
 import React,{ useState , useEffect} from 'react'
 import api from '../../config/api'
 import {toast} from "react-hot-toast"
-import {CiEdit} from "react-icons/ci"
-import { useNavigate } from 'react-router-dom';
 import { FaUserEdit } from "react-icons/fa";
 import ProfileEditModal from "./profileEditModal";
 
 const Profile = () => {
-  const navigate = useNavigate();
   const [userdata, setUserData] = useState("");
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
 
@@ -31,7 +28,7 @@ const Profile = () => {
 
   return (
     <>
-     <div className="flex justify-between bg-gradient-to-r from-pink-600 to-purple-600 p-4 shadow-lg">
+     <div className="flex justify-between bg-gradient-to-r from-[#f97e04] to-[#5e0d6ed4] p-4 shadow-lg">
         <h1 className="text-3xl font-bold text-white">Profile</h1>
         <button
           className="border border-white hover:scale-105 text-white p-2 rounded-lg font-bold flex gap-2 justify-center items-center hover:bg-pink-600 text-lg"

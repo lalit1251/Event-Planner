@@ -1,6 +1,9 @@
 import User from "../models/userModel.js"
 import bcrypt from "bcrypt";
 import genToken from "../utils/auth.js"
+
+
+
 export const RegisterUser = async (req,res,next)=>{
     try{
         const {name,email,number,password} = req.body;
@@ -74,10 +77,72 @@ export const LoginUser = async (req,res,next)=>{
     
 }
 
-export const LogoutUser = (res,req)=>{
+export const LogoutUser = (req,res,next)=>{
+     try {
+    res.cookie("IDCard", "", { maxAge: 0 });
+    res.status(200).json({ message: "Logout Successfull" });
+  } catch (error) {
+    next(error);
+  }
     
 }
 
-export const UpdateUser = (res,req)=>{
+export const UpdateUser = async (req,res,next)=>{
+     try {
+    const currentUser = req.user;
+    const {
+      name,
+      number,
+      gender,
+      occupation,
+      address,
+      city,
+      state,
+      district,
+      representing,
+    } = req.body;
+
+    if (!currentUser) {
+      const error = new Error("User Not Found !! Login Again");
+      error.statusCode = 401;
+      return next(error);
+    }
+    const photo = req.file;
+    let picture;
+    if (photo) {
+      const b64 = Buffer.from(photo.buffer).toString("base64");
+      const dataURI = `data:${photo.mimetype};base64,${b64}`;
+
+      const result = await cloudinary.uploader.upload(dataURI, {
+        folder: "eventPlannerPictures",
+        width: 500,
+        height: 500,
+        crop: "fill",
+      });
+      picture = result.secure_url;
+    }
+
+    const updatedUser = await User.findByIdAndUpdate(
+      currentUser._id,
+      {
+        name,
+        number,
+        gender,
+        occupation,
+        address,
+        city,
+        state,
+        district,
+        representing,
+        photo: picture || currentUser.photo,
+      },
+      { new: true }
+    );
+
+    res.status(200).json({ message: "Profile Updated", data: updatedUser });
+  } catch (error) {
+    next(error);
+  }
+
     
 }

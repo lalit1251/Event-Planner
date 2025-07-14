@@ -22,7 +22,7 @@ app.use("/auth",AuthRouter);
 app.use("/user",UserRouter)
             
 app.get("/",(request,response)=>{
-    response.json({ message:"main server hoon"}) 
+    response.json({ message:"Server : Connected"}) 
 }) ;
 
 app.use((err,req,res,next)=>{

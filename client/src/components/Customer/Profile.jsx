@@ -3,10 +3,12 @@ import api from '../../config/api'
 import {toast} from "react-hot-toast"
 import { FaUserEdit } from "react-icons/fa";
 import ProfileEditModal from "./profileEditModal";
+import AccountDeactivateModal from "./AccountDeactivateModal";
 
 const Profile = () => {
   const [userdata, setUserData] = useState("");
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+  const [isDeactivateModalOpen, setIsDeactivateModalOpen] = useState(false);
 
   const fetchUserData = async () => {
     try {
@@ -97,6 +99,15 @@ const Profile = () => {
           </div>
         </div>
       </div>
+       <button
+        className="border border-red-500 hover:scale-105 mx-5 float-end text-red-500 p-2 rounded-lg font-bold flex gap-2 justify-center items-center hover:bg-red-500 hover:text-white cursor-pointer text-lg"
+        onClick={() => {
+          setIsDeactivateModalOpen(true);
+        }}
+      >
+        Deactivate My acoount
+      </button>
+
 
       <ProfileEditModal
         isOpen={isEditModalOpen}
@@ -104,6 +115,13 @@ const Profile = () => {
           setIsEditModalOpen(false);
         }}
         oldData={userdata}
+      />
+
+       <AccountDeactivateModal
+        isOpen={isDeactivateModalOpen}
+        onClose={() => {
+          setIsDeactivateModalOpen(false);
+        }}
       />
     </>
   );

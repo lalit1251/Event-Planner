@@ -1,7 +1,7 @@
 import User from "../models/userModel.js"
 import bcrypt from "bcrypt";
 import genToken from "../utils/auth.js"
-
+import Deactivation from "../models/deactivationModel.js";
 
 
 export const RegisterUser = async (req,res,next)=>{
@@ -144,5 +144,56 @@ export const UpdateUser = async (req,res,next)=>{
     next(error);
   }
 
+  
+
     
 }
+
+export const deleteUser = async (req, res, next) => {
+  try {
+    const currentUser = req.user;
+    const { reason, feedback, confirmPassword } = req.body;
+
+    console.log(currentUser);
+
+    console.log(reason, feedback, confirmPassword , currentUser.password);
+    
+    if (!currentUser) {
+      const error = new Error("User Not Found !! Login Again");
+      error.statusCode = 401;
+      return next(error);
+    }
+
+     const isVerified = await bcrypt.compare(confirmPassword, currentUser.password);
+
+    if (!isVerified) {
+      const error = new Error("Invalid Username or Password");
+      error.statusCode = 401;
+      return next(error);
+    }
+
+    const updatedUser = await User.findByIdAndUpdate(
+      currentUser._id,
+      {
+        gender: "N/A",
+        occupation: "N/A",
+        address: "N/A",
+        city: "N/A",
+        state: "N/A",
+        district: "N/A",
+        representing: "N/A",
+        photo: "N/A",
+        role: "N/A",
+        password:"N/A",
+        status: "Inactive",
+      },
+      { new: true }
+    );
+
+    await Deactivation.create({ userId: currentUser._id, reason, feedback });
+
+    res.status(200).json({ message: "Sorry to see you go . . ." });
+  } catch (error) {
+    next(error);
+  }
+};

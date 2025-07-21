@@ -1,8 +1,52 @@
-import React from 'react'
+import React,{useState} from 'react'
 import { Link, useNavigate } from "react-router-dom";
-import cont_bg from "../assets/cont_bg.jpg";
+import api from '../config/api';
+import{toast} from "react-hot-toast"
 
-const Contact = () => {
+
+
+
+const ContactUs = () => {
+
+  const navigate = useNavigate();
+    const [contactUsData, setContactUsData] = useState({
+      name: "",
+      email: "",
+      feedback: "",
+      
+    })
+  
+    const handleChange = (e) => {
+    setContactUsData((prev) => ({
+      ...prev,
+      [e.target.name]: e.target.value,
+    }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    if (!contactUsData.name || !contactUsData.email) {
+      toast.error("Please enter both email and full name.");
+      return;
+    }
+
+    try {
+      const res = await api.post("/contact/submit", contactUsData);
+      toast.success(res.data.message || "Message sent successfully");
+      setContactUsData({ name: "", email: "", feedback: "" });
+    } catch (error) {
+      toast.error(
+        `Error ${error.response?.status || ""}: ${
+          error.response?.data?.message || error.message
+        }`
+      );
+    }
+  };
+
+
+
+
   return (
     <>
     <section className="min-h-screen bg-gradient-to-br from-[#fff1e0] via-[#fbd9b4] to-[#fff7eb] flex items-center justify-center px-6 py-12" 
@@ -14,15 +58,19 @@ const Contact = () => {
     <p className="text-center text-[#5a2b0c] mb-10 font-medium">
       Every celebration deserves a touch of elegance — contact us for bookings, guidance, or heartfelt blessings.
     </p>
-    <form className="space-y-6">
+    <form className="space-y-6" onSubmit={handleSubmit}>
       <div>
         <label className="block text-[#6b2f0c] font-semibold mb-1 font-serif">
-          Full Name
+         Name
         </label>
         <input
+        name='name'
           type="text"
           className="w-full px-4 py-2 border border-[#d6a756] rounded-md focus:outline-none focus:ring-2 focus:ring-[#e2b057] bg-[#fffaf5]"
           placeholder="Enter your name"
+          value={contactUsData.name}
+          onChange={handleChange}
+        
         />
       </div>
       <div>
@@ -30,19 +78,27 @@ const Contact = () => {
           Email Address
         </label>
         <input
+        name='email'
           type="email"
           className="w-full px-4 py-2 border border-[#d6a756] rounded-md focus:outline-none focus:ring-2 focus:ring-[#e2b057] bg-[#fffaf5]"
           placeholder="Enter your email"
+          value={contactUsData.email}
+          onChange={handleChange}
+        
         />
       </div>
       <div>
         <label className="block text-[#6b2f0c] font-semibold mb-1 font-serif">
-          Message
+          Feedback
         </label>
         <textarea
+          name='feedback'
           rows="5"
           className="w-full px-4 py-2 border border-[#d6a756] rounded-md focus:outline-none focus:ring-2 focus:ring-[#e2b057] bg-[#fffaf5]"
-          placeholder="Share your thoughts..."
+          placeholder="Share your feedback..."
+          value={contactUsData.feedback}
+          onChange={handleChange}
+          
         />
       </div>
       <div className="text-center">
@@ -50,7 +106,7 @@ const Contact = () => {
           type="submit"
           className="bg-[#cc3366] text-white px-6 py-2 rounded-full hover:bg-[#b92c5b] transition duration-300 font-semibold"
         >
-          Send Message
+          Send Feedback
         </button>
       </div>
     </form>
@@ -65,4 +121,5 @@ const Contact = () => {
   )
 }
 
-export default Contact
+
+export default ContactUs;

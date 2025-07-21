@@ -4,6 +4,10 @@ import {Link, useNavigate} from "react-router-dom"
 import register from "../assets/register.jpg"
 import api from "../config/api";
 import {toast} from "react-hot-toast"
+
+
+
+
 const Register = () => {
   const navigate = useNavigate();
   const [registerData, setRegisterData] = useState({

@@ -8,6 +8,8 @@ import cors from "cors";
 import connectDB from "./src/config/db.js";
 import UserRouter from "./src/routes/userRoutes.js"
 import cookieParser from "cookie-parser";
+import ContactUsRouter from "./src/routes/contactUsRoutes.js";
+
 
 
 const app = express();
@@ -19,7 +21,8 @@ app.use(cookieParser());
 app.use(morgan("dev"));
 
 app.use("/auth",AuthRouter);
-app.use("/user",UserRouter)
+app.use("/user",UserRouter);
+app.use("/contact",ContactUsRouter);
             
 app.get("/",(request,response)=>{
     response.json({ message:"Server : Connected"}) 

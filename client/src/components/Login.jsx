@@ -3,11 +3,12 @@ import { Link, useNavigate } from "react-router-dom";
 import loginbg_2 from "../assets/loginbg_2.jpg"
 import api from "../config/api";
 import {toast} from "react-hot-toast"
+import { useAuth } from '../context/AuthContext';
 
 
   const Login = () => {
+  const { user, setUser, isLogin, setIsLogin, isAdmin, setIsAdmin } = useAuth();
   const navigate = useNavigate();
-
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -16,14 +17,19 @@ import {toast} from "react-hot-toast"
     const logindata = {
       email: email,
       password: password,
-    }
-    console.log(logindata);
+    };
+    
     try{
-      const res = await api.post("/auth/login",{email , password});
+      const res = await api.post("/auth/login", logindata);
       toast.success(res.data.message);
       setEmail("")
       setPassword("")
-      navigate('/dashboard')
+      setUser(res.data.data);
+      sessionStorage.setItem("EventUser",JSON.stringify(res.data.data));
+      setIsLogin(true);
+      res.data.data.role === "Admin"
+        ? (setIsAdmin(true), navigate("/adminpanel"))
+        : navigate("/");
     }catch(error){
       toast.error(
         `Error : ${error.response?.status || error.message} | ${error.response?.data.message || ""}`

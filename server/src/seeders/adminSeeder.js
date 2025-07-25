@@ -28,3 +28,22 @@ const AdminUser = {
 
 
 
+const existingAdmin = await findOne({role:"Admin"});
+// await existingAdmin.delete();
+
+let admin 
+if(existingAdmin){
+    admin = await User.FindByIdAndUpdate({_id:existingAdmin._id},AdminUser,{new:true});
+    console.log("Admin User Updated Successufully",admin.email);
+}
+else{
+     admin = await User.create(AdminUser);
+     console.log("Admin User Created Successufully",admin.email);
+
+    }
+
+    process.exit(1);
+
+};
+
+seederAdmin();

@@ -2,7 +2,7 @@ import dotenv from "dotenv";
 dotenv.config();
 
 import connectDB from "./config/db.js"
-import User from "./models/userrModel.js"
+import User from "./models/userModel.js"
 
 
 const seederAdmin = async ()=>{

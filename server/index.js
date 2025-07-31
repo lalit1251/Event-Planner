@@ -9,6 +9,7 @@ import connectDB from "./src/config/db.js";
 import UserRouter from "./src/routes/userRoutes.js"
 import cookieParser from "cookie-parser";
 import ContactUsRouter from "./src/routes/contactUsRoutes.js";
+import AdminRouter from "./src/routes/adminRoutes.js"
 
 
 
@@ -23,6 +24,7 @@ app.use(morgan("dev"));
 app.use("/auth",AuthRouter);
 app.use("/user",UserRouter);
 app.use("/contact",ContactUsRouter);
+app.use("/admin", AdminRouter);
             
 app.get("/",(request,response)=>{
     response.json({ message:"Server : Connected"}) 
@@ -39,7 +41,17 @@ const port = process.env.PORT  || 5000;
 
 app.listen(port, async()=>{
     console.log("server started at", port);
-    connectDB();
+    
+
+
+     try {
+    await connectDB();
+    await cloudinary.api.resources({ max_results: 1 });
+    console.log("Cloudinary Connected");
+  } catch (error) {
+    console.log(error);
+    process.exit(1);
+  }
 
    
 

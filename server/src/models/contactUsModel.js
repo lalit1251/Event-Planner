@@ -16,6 +16,13 @@ const contactUsSchema = mongoose.Schema(
         type: String,
         required: true,
     },
+     status: {
+      type: String,
+      enum: ["Pending", "Resolved", "Rejected"],
+      default: "Pending",
+      required: true,
+    },
+    reply: { type: String },
 },
 { timestamps: true }
 );

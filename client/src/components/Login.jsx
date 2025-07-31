@@ -20,7 +20,7 @@ import { useAuth } from '../context/AuthContext';
     };
     
     try{
-      const res = await api.post("/auth/login", logindata);
+      const res = await api.post("/auth/login", {email,password});
       toast.success(res.data.message);
       setEmail("")
       setPassword("")
@@ -30,12 +30,16 @@ import { useAuth } from '../context/AuthContext';
       res.data.data.role === "Admin"
         ? (setIsAdmin(true), navigate("/adminpanel"))
         : navigate("/");
-    }catch(error){
+    }catch (error) {
       toast.error(
-        `Error : ${error.response?.status || error.message} | ${error.response?.data.message || ""}`
+        `Error : ${error.response?.status || error.message} | ${
+          error.response?.data.message || ""
+        }`
       );
       console.log(error);
     }
+    console.log(logindata);
+  
 
   }
   return (

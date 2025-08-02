@@ -167,7 +167,7 @@ const ContactViewModal = ({ isOpen, onClose, Query }) => {
                   <label className="block text-sm font-semibold text-gray-600 mb-1">
                     Phone Number
                   </label>
-                  <p className="text-gray-900">{query.phone}</p>
+                  <p className="text-gray-900">{query.number}</p>
                 </div>
 
                 <div className="bg-gray-50 rounded-lg p-4">
@@ -197,23 +197,7 @@ const ContactViewModal = ({ isOpen, onClose, Query }) => {
               </h4>
 
               <div className="space-y-4">
-                {/* Status Update */}
-                <div>
-                  <label className="block text-sm font-semibold text-gray-700 mb-2">
-                    Update Status
-                  </label>
-                  <select
-                    name="status"
-                    value={updateData.status}
-                    onChange={handleInputChange}
-                    className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 outline-none transition-all"
-                    disabled={Query.status !== "Pending"}
-                  >
-                    <option value="Pending">🟡 Pending</option>
-                    <option value="Resolved">🟢 Resolved</option>
-                    <option value="Rejected">🔴 Rejected</option>
-                  </select>
-                </div>
+                
                 {/* Reply Message */}
                 <div>
                   <label className="block text-sm font-semibold text-gray-700 mb-2">
@@ -228,6 +212,24 @@ const ContactViewModal = ({ isOpen, onClose, Query }) => {
                     className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 outline-none transition-all resize-none"
                     disabled={Query.status !== "Pending"}
                   />
+                </div>
+
+                 {/* Status Update */}
+                 <div>
+                  <label className="block text-sm font-semibold text-gray-700 mb-2">
+                    Update Status
+                  </label>
+                  <select
+                    name="status"
+                    value={updateData.status}
+                    onChange={handleInputChange}
+                    className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 outline-none transition-all"
+                    disabled={Query.status !== "Pending"}
+                  >
+                    <option value="Pending">🟡 Pending</option>
+                    <option value="Resolved">🟢 Resolved</option>
+                    <option value="Rejected">🔴 Rejected</option>
+                  </select>
                 </div>
 
                 {/* Action Buttons */}

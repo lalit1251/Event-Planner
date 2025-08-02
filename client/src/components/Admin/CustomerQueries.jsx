@@ -201,7 +201,7 @@ const CustomerQueries = () => {
                         </div>
                       </td>
                       <td className="px-6 py-4 text-gray-600">{query.email}</td>
-                      <td className="px-6 py-4 text-gray-600">{query.phone}</td>
+                      <td className="px-6 py-4 text-gray-600">{query.number}</td>
                       <td className="px-6 py-4">
                         {getStatusBadge(query.status)}
                       </td>

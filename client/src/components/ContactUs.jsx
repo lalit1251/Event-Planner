@@ -13,6 +13,8 @@ const ContactUs = () => {
       name: "",
       email: "",
       feedback: "",
+      subject:"",
+      phone:"",
       
     })
   
@@ -59,6 +61,8 @@ const ContactUs = () => {
       Every celebration deserves a touch of elegance — contact us for bookings, guidance, or heartfelt blessings.
     </p>
     <form className="space-y-6" onSubmit={handleSubmit}>
+
+
       <div>
         <label className="block text-[#6b2f0c] font-semibold mb-1 font-serif">
          Name
@@ -70,9 +74,11 @@ const ContactUs = () => {
           placeholder="Enter your name"
           value={contactUsData.name}
           onChange={handleChange}
-        
+        required
         />
       </div>
+
+
       <div>
         <label className="block text-[#6b2f0c] font-semibold mb-1 font-serif">
           Email Address
@@ -84,9 +90,11 @@ const ContactUs = () => {
           placeholder="Enter your email"
           value={contactUsData.email}
           onChange={handleChange}
-        
+        required
         />
       </div>
+
+
       <div>
         <label className="block text-[#6b2f0c] font-semibold mb-1 font-serif">
           Feedback
@@ -98,9 +106,43 @@ const ContactUs = () => {
           placeholder="Share your feedback..."
           value={contactUsData.feedback}
           onChange={handleChange}
-          
+          required
         />
       </div>
+
+      <div>
+        <label className="block text-[#6b2f0c] font-semibold mb-1 font-serif">
+          Subject
+        </label>
+        <input
+        name='subject'
+          type="text"
+          className="w-full px-4 py-2 border border-[#d6a756] rounded-md focus:outline-none focus:ring-2 focus:ring-[#e2b057] bg-[#fffaf5]"
+          placeholder="Enter your subject"
+          value={contactUsData.subject}
+          onChange={handleChange}
+          required
+        />
+      </div>
+
+
+      <div>
+        <label className="block text-[#6b2f0c] font-semibold mb-1 font-serif">
+          Phone
+        </label>
+        <input
+        name='number'
+          type="tel"
+          className="w-full px-4 py-2 border border-[#d6a756] rounded-md focus:outline-none focus:ring-2 focus:ring-[#e2b057] bg-[#fffaf5]"
+          placeholder="Enter your Phone Number"
+          value={contactUsData.number}
+          onChange={handleChange}
+        required
+        />
+      </div>
+
+      
+
       <div className="text-center">
         <button
           type="submit"

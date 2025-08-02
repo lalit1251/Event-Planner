@@ -1,10 +1,10 @@
 import { response } from "express";
-import Contact from "../models/contactModel.js";
+import ContactUs from "../models/contactUsModel.js";
 import sendEmail from "../utils/sendEmail.js";
 
 export const GetAllContacts = async (req, res, next) => {
   try {
-    const contacts = await Contact.find();
+    const contacts = await ContactUs.find();
     res.status(200).json({ message: "All Contacts Fetched", data: contacts });
   } catch (error) {
     next(error);
@@ -16,7 +16,7 @@ export const UpdateContacts = async (req, res, next) => {
     const QueryId = req.params.Qid;
     const { status, reply } = req.body;
 
-    const updatedQuery = await Contact.findByIdAndUpdate(
+    const updatedQuery = await ContactUs.findByIdAndUpdate(
       QueryId,
       {
         status,

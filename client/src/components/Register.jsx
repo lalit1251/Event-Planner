@@ -32,13 +32,17 @@ const Register = () => {
       const res = await api.post("/auth/register",registerData);
       toast.success(res.data.message);
       setRegisterData({
-      fullName: "",
+      name: "",
       email: "",
       password: "",
       number: "",
     })
-    }catch(error){
-      toast.error(error.message)
+    }catch (error) {
+      toast.error(
+        `Error : ${error.response?.status || error.message} | ${
+          error.response?.data.message || ""
+        }`
+      );
     }
 
     

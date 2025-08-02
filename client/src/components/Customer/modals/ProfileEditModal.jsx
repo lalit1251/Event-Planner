@@ -1,9 +1,9 @@
+
 import React, { useEffect, useState } from "react";
 import { IoIosCloseCircle, IoIosSave } from "react-icons/io";
 import { FaCamera } from "react-icons/fa";
 import api from "../../../config/api";
-import { toast } from "react-hot-toast";
-import { useAuth } from "../../../context/AuthContext";
+import {toast} from 'react-hot-toast'
 
 const indianStates = [
   "Andhra Pradesh",
@@ -37,11 +37,10 @@ const indianStates = [
 ];
 
 const ProfileEditModal = ({ isOpen, onClose, oldData }) => {
-  const { setUser } = useAuth();
   const [userdata, setUserData] = useState({
-    fullName: "",
+    name: "",
     email: "",
-    phone: "",
+    number: "",
     photo: "",
     gender: "",
     occupation: "",
@@ -72,9 +71,9 @@ const ProfileEditModal = ({ isOpen, onClose, oldData }) => {
 
     const formData = new FormData();
 
-    formData.append("fullName", userdata.fullName);
+    formData.append("fullName", userdata.name);
     formData.append("picture", picture);
-    formData.append("phone", userdata.phone);
+    formData.append("phone", userdata.number);
     formData.append("gender", userdata.gender);
     formData.append("occupation", userdata.occupation);
     formData.append("address", userdata.address);
@@ -90,8 +89,7 @@ const ProfileEditModal = ({ isOpen, onClose, oldData }) => {
         },
       });
       toast.success(res.data.message);
-      setUser(res.data.data);
-      sessionStorage.setItem("EventUser", JSON.stringify(res.data.data));
+      setUserData(res.data.data);
       onClose();
     } catch (error) {
       toast.error(
@@ -159,8 +157,8 @@ const ProfileEditModal = ({ isOpen, onClose, oldData }) => {
               <span className="font-bold text-md">Name : </span>
               <input
                 type="text"
-                name="fullname"
-                value={userdata.fullName}
+                name="name"
+                value={userdata.name}
                 onChange={handelChange}
                 className="p-2 border rounded-lg border-rose-300 w-full"
               />
@@ -168,7 +166,7 @@ const ProfileEditModal = ({ isOpen, onClose, oldData }) => {
               <input
                 type="tel"
                 name="phone"
-                value={userdata.phone}
+                value={userdata.number}
                 onChange={handelChange}
                 className="p-2 border rounded-lg border-rose-300 w-full"
               />
@@ -225,12 +223,10 @@ const ProfileEditModal = ({ isOpen, onClose, oldData }) => {
                 className="p-2 border rounded-lg border-rose-300 w-full"
               >
                 <option value="N/A">N/A</option>
-                {indianStates ? (
-                  indianStates.map((rajya, i) => (
-                    <option value={rajya} key={i}>
-                      {rajya}
-                    </option>
-                  ))
+                {indianStates ? (indianStates.map(
+                  (rajya,i)=><option value={rajya} key={i}>{rajya}</option>
+                )
+                  
                 ) : (
                   <option value={""}>No states available</option>
                 )}

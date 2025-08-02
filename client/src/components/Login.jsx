@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import loginbg_2 from "../assets/loginbg_2.jpg"
 import api from "../config/api";
 import {toast} from "react-hot-toast"
@@ -7,8 +7,10 @@ import { useAuth } from '../context/AuthContext';
 
 
   const Login = () => {
-  const { user, setUser, isLogin, setIsLogin, isAdmin, setIsAdmin } = useAuth();
   const navigate = useNavigate();
+  const { user, setUser, isLogin, setIsLogin, isAdmin, setIsAdmin } = useAuth();
+
+  
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -20,16 +22,16 @@ import { useAuth } from '../context/AuthContext';
     };
     
     try{
-      const res = await api.post("/auth/login", {email,password});
+      const res = await api.post("/auth/login", logindata);
       toast.success(res.data.message);
-      setEmail("")
       setPassword("")
+      setEmail("")
       setUser(res.data.data);
       sessionStorage.setItem("EventUser",JSON.stringify(res.data.data));
       setIsLogin(true);
       res.data.data.role === "Admin"
         ? (setIsAdmin(true), navigate("/adminpanel"))
-        : navigate("/");
+        : navigate("/dashboard");
     }catch (error) {
       toast.error(
         `Error : ${error.response?.status || error.message} | ${
@@ -37,11 +39,11 @@ import { useAuth } from '../context/AuthContext';
         }`
       );
       console.log(error);
-    }
+    };
     console.log(logindata);
   
 
-  }
+  };
   return (
     <>
     <div className="fixed inset-0 w-full h-full flex items-center justify-center overflow-hidden">
@@ -100,6 +102,6 @@ import { useAuth } from '../context/AuthContext';
   
     </>
   )
-}
+};
 
-export default Login
+export default Login;

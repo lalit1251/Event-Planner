@@ -2,13 +2,15 @@ import nodemailer from "nodemailer";
 
 const sendEmail = async (to, subject, mailBody) => {
   try {
-    const Truck = nodemailer.createTransport({
+    const Loary = nodemailer.createTransport({
       service: "gmail",
       auth: {
         user: process.env.GMAIL_USER,
         pass: process.env.GMAIL_PASSCODE,
       },
     });
+
+    console.log("Loary is ready");
 
     const mailOptions = {
       from: process.env.GMAIL_USER,
@@ -17,7 +19,9 @@ const sendEmail = async (to, subject, mailBody) => {
       html: mailBody,
     };
 
-    const result = await Truck.sendMail(mailOptions);
+    console.log("Loary loaded the mail");
+
+    const result = await Loary.sendMail(mailOptions);
     console.log("Email Sent Successfully", result.messageId);
     return true;
 

@@ -46,7 +46,7 @@ app.listen(port, async()=>{
 
      try {
     await connectDB();
-    await cloudinary.api.resources({ max_results: 1 });
+    // await cloudinary.api.resources({ max_results: 1 });
     console.log("Cloudinary Connected");
   } catch (error) {
     console.log(error);

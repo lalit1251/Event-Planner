@@ -7,7 +7,7 @@ import Customers from "../components/Admin/Customers";
 import Bookings from "../components/Admin/Bookings";
 import CustomerQueries from "../components/Admin/CustomerQueries";
 import CustomerFeedback from "../components/Admin/CustomerFeedback";
-import Packages from "../components/Admin/Packages";
+import BanquetHall from "../components/Admin/BanquetHall";
 
 
 const AdminPannel = () => {
@@ -28,7 +28,7 @@ const AdminPannel = () => {
         <Sidebar active={active} setActive={setActive} />
         <div className="w-full">
           {active === "overview" && <Overview />}
-          {active === "packages" && <Packages />}
+          {active === "banquetHall" && <BanquetHall />}
           {active === "customers" && <Customers />}
           {active === "bookings" && <Bookings />}
           {active === "cusQueries" && <CustomerQueries />}
